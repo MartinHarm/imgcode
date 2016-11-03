@@ -1,16 +1,24 @@
 package ee.kotlin.rest
 
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
 
 /**
- * Created by martinha on 03.11.2016.
+ * Created by Martin Härm on 03.11.2016.
  */
 @RestController
 class MainController {
-    @RequestMapping(value = "/")
-    fun greeting(@RequestParam(value = "name", defaultValue = "World") name: String): String {
-        return "Hello, " + name
+
+    @CrossOrigin
+    @RequestMapping(value = "/", method = arrayOf(RequestMethod.POST))
+    fun fileSize(@RequestBody multipartFile: MultipartFile): String {
+        return multipartFile.contentType+multipartFile.size
     }
+
+    @CrossOrigin
+    @RequestMapping(value = "/", method = arrayOf(RequestMethod.GET))
+    fun greeting(): String {
+        return "TEST"
+    }
+
 }
