@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+var filename = $("#file");   
+
+   $("button").click(function(){
+        $.ajax({
+    type: "POST",
+    url: "http://localhost:8080/",
+	enctype: 'multipart/form-data',
+	data: {
+                file: filename.name
+            },
+	success:function (data) {
+      console.log(JSON.stringify(data));
+    },
+    error: function (xhr, ajaxOptions, thrownError) {
+      console.log(thrownError);
+    }
+})
+    });
+});
+</script>
+</head>
+<body>
+<span>File</span>
+<input type="file" id="file" name="file" size="10"/>
+<button>HTTP POST REQUEST</button>
+
+</body>
+</html>
