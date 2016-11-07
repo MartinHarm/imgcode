@@ -11,6 +11,14 @@ import javax.imageio.ImageIO
 @RestController
 class MainController {
 
+
+    @CrossOrigin
+    @RequestMapping(value = "/", method = arrayOf(RequestMethod.GET))
+    fun getHandler(): String {
+        return "USE POST"
+    }
+
+
     @CrossOrigin
     @RequestMapping(value = "/", method = arrayOf(RequestMethod.POST))
     fun fileSize(@RequestParam("file") multipartFile: MultipartFile): String {
